@@ -23,3 +23,5 @@ Route::prefix('auth')->group(function () {
 
 Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyPermission'])->middleware('auth:sanctum');
  Route::apiResource('donats',App\Http\Controllers\DonatsController::class);
+ 
+ Route::apiResource('inspections',App\Http\Controllers\InspectionController::class);
