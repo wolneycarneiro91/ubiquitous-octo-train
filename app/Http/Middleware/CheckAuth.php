@@ -13,9 +13,10 @@ class CheckAuth
     {     
         $route =implode('/',$request->segments())."-".$request->method();          
         $response = Http::withHeaders([
+            'endpoint' => config('microservices.avaliable.micro_01.url'),
             'Accept' => 'application/json',
             'Authorization' => $request->bearer            
-        ])->get(config('microservices.avaliable.micro_01.url').'/api/autenticar',[
+        ])->get('{+endpoint}/api/autenticar',[
             'route'=> $route
         ]);
 

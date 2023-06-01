@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('event_type');
-            $table->string('old_value');
+            $table->longText('old_value');
             $table->string('table_name');
-            $table->string('new_value');
+            $table->longText('new_value');
             $table->string('url');
             $table->string('ip_address');
             $table->string('user_agent');

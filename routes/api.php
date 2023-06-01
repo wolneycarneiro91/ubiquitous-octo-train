@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::apiResource('users', App\Http\Controllers\UserController::class)->middleware('transaction');
+Route::apiResource('users', App\Http\Controllers\UserController::class)->middleware(['transaction']);
 
 
 Route::prefix('auth')->group(function () {
@@ -21,7 +21,7 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout']);
 });
 
-Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyPermission'])->middleware('auth:sanctum');
+Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyPermission']);
  Route::apiResource('donats',App\Http\Controllers\DonatsController::class);
  
  Route::apiResource('inspections',App\Http\Controllers\InspectionController::class)->middleware('auth:sanctum');
