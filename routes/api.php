@@ -25,3 +25,5 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  Route::apiResource('donats',App\Http\Controllers\DonatsController::class);
  
  Route::apiResource('inspections',App\Http\Controllers\InspectionController::class)->middleware('auth:sanctum');
+
+ Route::post('sendmail',[App\Http\Controllers\MailController::class,'enviarEmail']);
