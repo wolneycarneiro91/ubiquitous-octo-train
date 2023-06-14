@@ -29,3 +29,10 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  Route::post('sendmail',[App\Http\Controllers\MailController::class,'enviarEmail']);
  
  Route::apiResource('planstypes',App\Http\Controllers\PlansTypeController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('leveldonors',App\Http\Controllers\LevelDonorController::class)->middleware(['transaction']);
+ 
+ 
+ Route::apiResource('plataforms',App\Http\Controllers\PlataformController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('fundtypes',App\Http\Controllers\FundTypeController::class)->middleware(['transaction']);
