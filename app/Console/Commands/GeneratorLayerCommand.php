@@ -29,7 +29,7 @@ class GeneratorLayerCommand extends Command
         $this->model($name, $fields);
         $this->request($name);
         $nameController = $name . "Controller";
-        File::append(base_path('routes/api.php'), "\n \n Route::apiResource('" . Str::plural(strtolower($name)) . "'" . str_replace(".", "", ",App\Http\Controllers\.$nameController.::class)") . "->middleware(['check.auth','transaction']);");
+        File::append(base_path('routes/api.php'), "\n \n Route::apiResource('" . Str::plural(strtolower($name)) . "'" . str_replace(".", "", ",App\Http\Controllers\.$nameController.::class)") . "->middleware(['transaction']);");
         Artisan::call(command: 'make:migration create_' . strtolower($name) . '_table --create=' . strtolower($name));
     }
 
