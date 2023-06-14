@@ -22,8 +22,10 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyPermission']);
- Route::apiResource('donats',App\Http\Controllers\DonatsController::class);
+ Route::apiResource('donortypes',App\Http\Controllers\DonorTypeController::class);
  
- Route::apiResource('inspections',App\Http\Controllers\InspectionController::class)->middleware('auth:sanctum');
+ Route::apiResource('inspections',App\Http\Controllers\InspectionController::class);
 
  Route::post('sendmail',[App\Http\Controllers\MailController::class,'enviarEmail']);
+ 
+ Route::apiResource('planstypes',App\Http\Controllers\PlansTypeController::class)->middleware(['transaction']);
