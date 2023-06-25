@@ -2,24 +2,24 @@
 
 namespace App\Services;
 use Illuminate\Http\Response;
-use App\Models\Plataform;
+use App\Models\TypeFile;
 
-class PlataformService 
+class TypeFileService 
 {
-    protected $plataform;
-    public function __construct(Plataform $plataform){
-            $this->plataform = $plataform;        
+    protected $typefile;
+    public function __construct(TypeFile $typefile){
+            $this->typefile = $typefile;        
     } 
     public function index($request)
     {    
         if ($request->filled('limit')) {
             if ($request->limit == '-1') {
-                $data = $this->plataform->get();
+                $data = $this->typefile->get();
             }
         } else {
-            $data = $this->plataform->paginate(config('app.pageLimit'));
+            $data = $this->typefile->paginate(config('app.pageLimit'));
         }                                     
-        $data = $this->plataform->all();
+        $data = $this->typefile->all();
         $totalCount = count($data);
         return response()->json($data, Response::HTTP_OK )->header('X-Total-Count', $totalCount);               
     }
@@ -27,7 +27,7 @@ class PlataformService
     {        
         $dataFrom = $request->all();       
         try {        
-            $data = $this->plataform->create($dataFrom);               
+            $data = $this->typefile->create($dataFrom);               
             return response()->json($data,Response::HTTP_CREATED ) ;
         } 
         catch (\Exception $e) {            
@@ -36,7 +36,7 @@ class PlataformService
     }
     public function show($id)
     {
-        $data = $this->plataform->find($id);
+        $data = $this->typefile->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }
@@ -44,7 +44,7 @@ class PlataformService
     }
     public function update($request, $id)
     { 
-        $data = $this->plataform->find($id);  
+        $data = $this->typefile->find($id);  
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }            
@@ -61,7 +61,7 @@ class PlataformService
 
     public function destroy($id)
     {
-        $data = $this->plataform->find($id);
+        $data = $this->typefile->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }        

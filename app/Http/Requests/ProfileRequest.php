@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DonatsRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     public function authorize()
     {

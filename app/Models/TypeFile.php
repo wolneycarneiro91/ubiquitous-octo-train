@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class PlansType extends Model
+class TypeFile extends Model
 {         
     protected $guarded = ['id'];
-    protected $table ='planstype';
-    protected $fillable = ["description"];
+    protected $table ='typefile';   
+    protected $fillable = ["descritption"];
 }

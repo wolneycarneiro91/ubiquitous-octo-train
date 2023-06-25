@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('planstype')) { 
-            Schema::create('planstype', function (Blueprint $table) {
-                $table->id();
-                $table->string('description');
-                $table->timestamps();
-            });
-        }
+        Schema::create('file', function (Blueprint $table) {
+            $table->id();
+            $table->integer('type_file_id');
+            $table->string('description');
+            $table->string('path');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('planstype');
+        Schema::dropIfExists('file');
     }
 };

@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fundtype', function (Blueprint $table) {
-            $table->id();
-            $table->string('description');
-            $table->timestamps();
-        });
+
+        if (!Schema::hasTable('fundtype')) {
+            Schema::create('fundtype', function (Blueprint $table) {
+                $table->id();
+                $table->string('description');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
