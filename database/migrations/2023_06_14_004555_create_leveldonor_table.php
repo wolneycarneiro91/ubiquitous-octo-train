@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leveldonor', function (Blueprint $table) {
-            $table->id();
-            $table->string('description');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('leveldonor')) { 
+            Schema::create('leveldonor', function (Blueprint $table) {
+                $table->id();
+                $table->string('description');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

@@ -36,3 +36,9 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  Route::apiResource('plataforms',App\Http\Controllers\PlataformController::class)->middleware(['transaction']);
  
  Route::apiResource('fundtypes',App\Http\Controllers\FundTypeController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('profiles',App\Http\Controllers\ProfileController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('typefiles',App\Http\Controllers\TypeFileController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('files',App\Http\Controllers\FileController::class)->middleware(['transaction']);
