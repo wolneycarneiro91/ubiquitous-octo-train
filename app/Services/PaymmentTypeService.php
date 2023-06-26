@@ -2,26 +2,24 @@
 
 namespace App\Services;
 use Illuminate\Http\Response;
-use App\Models\Campaign;
+use App\Models\PaymmentType;
 
-class CampaignService 
+class PaymmentTypeService 
 {
-    protected $campaign;
-    public function __construct(Campaign $campaign){
-            $this->campaign = $campaign;        
+    protected $paymmenttype;
+    public function __construct(PaymmentType $paymmenttype){
+            $this->paymmenttype = $paymmenttype;        
     } 
     public function index($request)
     {    
-     
         if ($request->filled('limit')) {
             if ($request->limit == '-1') {
-                $data = $this->campaign->get();
+                $data = $this->paymmenttype->get();
             }
         } else {
-            $data = $this->campaign->paginate(config('app.pageLimit'));
+            $data = $this->paymmenttype->paginate(config('app.pageLimit'));
         }                                     
-        $data = $this->campaign->with(['status','channel_marketing']
-        )->get(); 
+        $data = $this->paymmenttype->all();
         $totalCount = count($data);
         return response()->json($data, Response::HTTP_OK )->header('X-Total-Count', $totalCount);               
     }
@@ -29,7 +27,7 @@ class CampaignService
     {        
         $dataFrom = $request->all();       
         try {        
-            $data = $this->campaign->create($dataFrom);               
+            $data = $this->paymmenttype->create($dataFrom);               
             return response()->json($data,Response::HTTP_CREATED ) ;
         } 
         catch (\Exception $e) {            
@@ -38,7 +36,7 @@ class CampaignService
     }
     public function show($id)
     {
-        $data = $this->campaign->find($id);
+        $data = $this->paymmenttype->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }
@@ -46,7 +44,7 @@ class CampaignService
     }
     public function update($request, $id)
     { 
-        $data = $this->campaign->find($id);  
+        $data = $this->paymmenttype->find($id);  
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }            
@@ -63,7 +61,7 @@ class CampaignService
 
     public function destroy($id)
     {
-        $data = $this->campaign->find($id);
+        $data = $this->paymmenttype->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }        

@@ -48,3 +48,11 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  Route::apiResource('statuses',App\Http\Controllers\StatusController::class)->middleware(['transaction']);
  
  Route::apiResource('channelmarketings',App\Http\Controllers\ChannelMarketingController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('donors',App\Http\Controllers\DonorController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('donations',App\Http\Controllers\DonationController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('paymmenttypes',App\Http\Controllers\PaymmentTypeController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('donors',App\Http\Controllers\DonorController::class)->middleware(['transaction']);
