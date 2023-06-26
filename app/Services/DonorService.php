@@ -2,26 +2,24 @@
 
 namespace App\Services;
 use Illuminate\Http\Response;
-use App\Models\Campaign;
+use App\Models\Donor;
 
-class CampaignService 
+class DonorService 
 {
-    protected $campaign;
-    public function __construct(Campaign $campaign){
-            $this->campaign = $campaign;        
+    protected $donor;
+    public function __construct(Donor $donor){
+            $this->donor = $donor;        
     } 
     public function index($request)
     {    
-     
         if ($request->filled('limit')) {
             if ($request->limit == '-1') {
-                $data = $this->campaign->get();
+                $data = $this->donor->get();
             }
         } else {
-            $data = $this->campaign->paginate(config('app.pageLimit'));
+            $data = $this->donor->paginate(config('app.pageLimit'));
         }                                     
-        $data = $this->campaign->with(['status','channel_marketing']
-        )->get(); 
+        $data = $this->donor->all();
         $totalCount = count($data);
         return response()->json($data, Response::HTTP_OK )->header('X-Total-Count', $totalCount);               
     }
@@ -29,7 +27,7 @@ class CampaignService
     {        
         $dataFrom = $request->all();       
         try {        
-            $data = $this->campaign->create($dataFrom);               
+            $data = $this->donor->create($dataFrom);               
             return response()->json($data,Response::HTTP_CREATED ) ;
         } 
         catch (\Exception $e) {            
@@ -38,7 +36,7 @@ class CampaignService
     }
     public function show($id)
     {
-        $data = $this->campaign->find($id);
+        $data = $this->donor->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }
@@ -46,7 +44,7 @@ class CampaignService
     }
     public function update($request, $id)
     { 
-        $data = $this->campaign->find($id);  
+        $data = $this->donor->find($id);  
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }            
@@ -63,7 +61,7 @@ class CampaignService
 
     public function destroy($id)
     {
-        $data = $this->campaign->find($id);
+        $data = $this->donor->find($id);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }        
