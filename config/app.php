@@ -43,6 +43,7 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+    'pageLimit' => env('PAGE_LIMIT'),
 
     /*
     |--------------------------------------------------------------------------
