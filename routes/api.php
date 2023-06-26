@@ -42,3 +42,9 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  Route::apiResource('typefiles',App\Http\Controllers\TypeFileController::class)->middleware(['transaction']);
  
  Route::apiResource('files',App\Http\Controllers\FileController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('campaigns',App\Http\Controllers\CampaignController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('statuses',App\Http\Controllers\StatusController::class)->middleware(['transaction']);
+ 
+ Route::apiResource('channelmarketings',App\Http\Controllers\ChannelMarketingController::class)->middleware(['transaction']);
