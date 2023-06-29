@@ -17,13 +17,16 @@ return new class extends Migration
             $table->string('description');
             $table->date('initial_date');
             $table->string('final_date');
-            $table->integer('status_id');
+            $table->unsignedBigInteger('states_id');
             $table->string('budget');
             $table->string('segmentation');
             $table->string('channel_marketing_id');
             $table->string('resources_path');
-            $table->integer('manager_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('manager_id');
+            $table->timestamps();  
+            $table->foreign('manager_id')
+            ->references('id')
+            ->on('users');              
         });
     }
 

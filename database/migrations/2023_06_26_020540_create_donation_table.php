@@ -13,15 +13,22 @@ return new class extends Migration
     {
         Schema::create('donation', function (Blueprint $table) {
             $table->id();
-            $table->integer('donor_id');
-            $table->integer('campaign_id')->nullable();
-            $table->integer('plan_type_id')->nullable();
+            $table->unsignedBigInteger('donor_id');
+            $table->unsignedBigInteger('campaign_id')->nullable();
+            $table->unsignedBigInteger('plan_type_id')->nullable();
             $table->integer('status')->nullable();
-            $table->integer('paymment_type_id');
+            $table->unsignedBigInteger('paymment_type_id');
             $table->boolean('receipt_issued')->nullable();
             $table->date('receipt_date')->nullable();
             $table->string('observation')->nullable();
             $table->timestamps();
+            $table->foreign('campaign_id')
+            ->references('id')
+            ->on('campaign');    
+            $table->foreign('plan_type_id')
+            ->references('id')
+            ->on('planstype');   
+                                              
         });
     }
 

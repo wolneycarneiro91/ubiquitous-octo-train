@@ -8,5 +8,6 @@ use Illuminate\Support\Str;
 class PaymmentType extends Model
 {         
     protected $guarded = ['id'];
+    protected $table ='paymmenttype';
     protected $fillable = ["description"];
 }

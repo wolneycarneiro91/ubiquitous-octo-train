@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('states', function (Blueprint $table) {
-            $table->id();
-            $table->string('description');
-            $table->timestamps();
+        Schema::table('donation', function (Blueprint $table) {
+            $table->foreign('paymment_type_id')
+                  ->references('id')
+                  ->on('paymmenttype');                 
         });
     }
 
@@ -23,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status');
+        Schema::table('donation', function (Blueprint $table) {
+            $table->dropColumn('paymment_type_id');
+        });
     }
 };

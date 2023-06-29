@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('file', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_file_id');
+            $table->unsignedBigInteger('type_file_id');
             $table->string('description');
             $table->string('path');
             $table->timestamps();
+            $table->foreign('type_file_id')
+            ->references('id')
+            ->on('typefile');          
         });
     }
 
