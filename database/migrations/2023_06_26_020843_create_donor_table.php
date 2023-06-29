@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('donor', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('donor_type_id');
-            $table->integer('level_donor_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('donor_type_id');
+            $table->unsignedBigInteger('level_donor_id');
             $table->timestamps();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');   
+            $table->foreign('donor_type_id')
+            ->references('id')
+            ->on('donortypes');    
+            $table->foreign('level_donor_id')
+            ->references('id')
+            ->on('leveldonor');                                     
         });
     }
 
