@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('description');
             $table->date('initial_date');
             $table->string('final_date');
-            $table->unsignedBigInteger('states_id');
+            $table->unsignedBigInteger('status_id');
             $table->string('budget');
             $table->string('segmentation');
-            $table->string('channel_marketing_id');
+            $table->unsignedBigInteger('channel_marketing_id');
             $table->string('resources_path');
             $table->unsignedBigInteger('manager_id');
             $table->timestamps();  

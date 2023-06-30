@@ -37,10 +37,11 @@ class ProfileService
     public function show($id)
     {
         $data = $this->profile->find($id);
+        $totalCount = count($data);
         if(!$data){
             return response()->json(['error'=>'Dados não encontrados'],Response::HTTP_NOT_FOUND) ;
         }
-        return response()->json($data,Response::HTTP_OK )->header('X-Total-Count', 1);
+        return response()->json($data, Response::HTTP_OK )->header('X-Total-Count', $totalCount);               
     }
     public function update($request, $id)
     { 

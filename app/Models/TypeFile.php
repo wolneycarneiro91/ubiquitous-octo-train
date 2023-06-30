@@ -9,5 +9,5 @@ class TypeFile extends Model
 {         
     protected $guarded = ['id'];
     protected $table ='typefile';   
-    protected $fillable = ["descritption"];
+    protected $fillable = ["description"];
 }
