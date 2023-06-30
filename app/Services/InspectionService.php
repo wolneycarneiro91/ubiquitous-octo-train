@@ -20,7 +20,8 @@ class InspectionService
             $data = $this->inspection->paginate(config('app.pageLimit'));
         }                                     
         $data = $this->inspection->all();
-        return response()->json($data, Response::HTTP_OK );                
+        $totalCount = count($data);
+        return response()->json($data, Response::HTTP_OK )->header('X-Total-Count', $totalCount);                
     }
     public function store($request)
     {        

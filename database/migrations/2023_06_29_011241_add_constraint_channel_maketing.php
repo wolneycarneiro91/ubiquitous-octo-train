@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status', function (Blueprint $table) {
-            $table->id();
-            $table->string('description');
-            $table->timestamps();
+        Schema::table('campaign', function (Blueprint $table) {
+            $table->foreign('channel_marketing_id')
+                  ->references('id')
+                  ->on('channelmarketing');                 
         });
     }
 
@@ -23,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status');
+        Schema::table('campaign', function (Blueprint $table) {
+            $table->dropColumn('channel_marketing_id');
+        });
     }
 };

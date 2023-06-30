@@ -55,4 +55,3 @@ Route::get('autenticar',[App\Http\Controllers\RegisterController::class,'verifyP
  
  Route::apiResource('paymmenttypes',App\Http\Controllers\PaymmentTypeController::class)->middleware(['transaction']);
  
- Route::apiResource('donors',App\Http\Controllers\DonorController::class)->middleware(['transaction']);

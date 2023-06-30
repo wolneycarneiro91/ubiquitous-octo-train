@@ -8,6 +8,6 @@ use Illuminate\Support\Str;
 class Status extends Model
 {         
     protected $guarded = ['id'];
-    protected $table ='states';   
+    protected $table ='status';   
     protected $fillable = ["description"];
 }
