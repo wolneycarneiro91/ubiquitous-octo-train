@@ -3,39 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;  
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Exception;
+use App\Services\GoogleAuthService;
 
 class GoogleController extends Controller
 {
-    public function googlepage(){
-        return socialite::driver('google')->redirect();
+    protected $google_auth_service;
+    public function __construct(GoogleAuthService $google_auth_service)
+    {
+         $this->google_auth_service = $google_auth_service;
     }
-    public function googlecallback(){
-        try {
-            $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first(); 
-            if($finduser)
-            {
-                Auth::login($finduser);
-                return redirect()->intended('dashboard');
-            }
-            else
-            {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt(env('PASS_DUMMY'))
-                ]);
-                Auth::login($newUser);
-                return redirect()->intended('dashboard');
-            }
-      
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+    public function googlepage()
+    {
+        return  $this->google_auth_service->googlepage();
+    }
+    public function googlecallback()
+    {
+        return  $this->google_auth_service->googlecallback();
     }
 }
